@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Header from './components/Common/Header';
+import Favorites from './components/Favorite/Favorites';
+import Authentication from './components/Auth/Authentication';
+import Home from './components/Home/Home';
+import NotFoundPage from './components/Common/NotFoundPage';
+import { AgeMinContext, AgeMaxContext, BreedsContext, FavDogsContext, UserNameContext } from './Context';
 
-function App() {
+const App: React.FC = () => {
+  const [ageMin, setAgeMin] = useState<number>(0);
+  const [ageMax, setAgeMax] = useState<number>(100);
+  const [breeds, setBreeds] = useState<string[]>([]);
+  const [favDogs, setFavDogs] = useState<string[]>([]);
+  const [userName, setUserName] = useState<string>("Guest");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <AgeMinContext.Provider value={[ageMin, setAgeMin]}>
+      <AgeMaxContext.Provider value={[ageMax, setAgeMax]}>
+        <BreedsContext.Provider value={[breeds, setBreeds]}>
+          <FavDogsContext.Provider value={[favDogs, setFavDogs]}>
+            <UserNameContext.Provider value={[userName, setUserName]}>
+
+              <Header />
+              <Routes>
+                <Route path="/" element={<Authentication />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/favorites" element={<Favorites />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </UserNameContext.Provider>
+          </FavDogsContext.Provider>
+        </BreedsContext.Provider>
+      </AgeMaxContext.Provider>
+    </AgeMinContext.Provider>
+
   );
-}
+};
 
 export default App;
