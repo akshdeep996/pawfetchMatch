@@ -21,7 +21,7 @@ const Header = () => {
 
   useEffect(() => {
     setIsFavoritesActive(location.pathname === '/favorites');
-    setIsLoginActive(location.pathname === '/');
+    setIsLoginActive(location.pathname === '/login');
   }, [location.pathname]);
 
   
@@ -72,7 +72,7 @@ const Header = () => {
               )}
 
               <li className={blockStyle}>{userName}</li>
-              <NavLink to="/" onClick={handleLogout}>
+              <NavLink to="/login" onClick={handleLogout}>
                 <li className={blockStyle} >Log out</li>
               </NavLink>
             </ul>

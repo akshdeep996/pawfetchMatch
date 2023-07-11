@@ -4,8 +4,9 @@ import Header from './components/Common/Header';
 import Favorites from './components/Favorite/Favorites';
 import Authentication from './components/Auth/Authentication';
 import Home from './components/Home/Home';
-import NotFoundPage from './components/Common/NotFoundPage';
+import NotFoundPage from './components/Common/Welcome';
 import { AgeMinContext, AgeMaxContext, BreedsContext, FavDogsContext, UserNameContext } from './Context';
+import Welcome from './components/Common/Welcome';
 
 const App: React.FC = () => {
   const [ageMin, setAgeMin] = useState<number>(0);
@@ -24,7 +25,8 @@ const App: React.FC = () => {
 
               <Header />
               <Routes>
-                <Route path="/" element={<Authentication />} />
+                <Route path="/pawfetchMatch" element={<Welcome />} />
+                <Route path="/login" element={<Authentication />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="*" element={<NotFoundPage />} />

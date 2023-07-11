@@ -7,7 +7,7 @@ jest.mock('./components/Common/Header', () => () => <div>Header Component</div>)
 jest.mock('./components/Favorite/Favorites', () => () => <div>Favorites Component</div>);
 jest.mock('./components/Auth/Authentication', () => () => <div>Authentication Component</div>);
 jest.mock('./components/Home/Home', () => () => <div>Home Component</div>);
-jest.mock('./components/Common/NotFoundPage', () => () => <div>NotFoundPage Component</div>);
+jest.mock('./components/Common/Welcome', () => () => <div>Welcome Component</div>);
 
 describe('App', () => {
   test('renders Header component', () => {
@@ -21,6 +21,8 @@ describe('App', () => {
   });
 
   test('renders Authentication component at the root route', () => {
+    window.history.pushState({}, '', '/login');
+
     render(
       <BrowserRouter>
         <App />
@@ -54,7 +56,7 @@ describe('App', () => {
     expect(screen.getByText('Favorites Component')).toBeInTheDocument();
   });
 
-  test('renders NotFoundPage component for unknown routes', () => {
+  test('renders Welcome component for unknown routes', () => {
     window.history.pushState({}, '', '/unknown');
     render(
       <BrowserRouter>
@@ -63,6 +65,6 @@ describe('App', () => {
     );
 
     
-    expect(screen.getByText('NotFoundPage Component')).toBeInTheDocument();
+    expect(screen.getByText('Welcome Component')).toBeInTheDocument();
   });
 });

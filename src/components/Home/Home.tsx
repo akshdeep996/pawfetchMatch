@@ -56,14 +56,14 @@ const Home: FC = (fetchData) => {
                 } else if (!response.ok) {
                     
                     alert("Please login first and try again");
-                    navigate('/');
+                    navigate('/login');
                 } else {
                     alert("Logging out as data failed to Load. Due to: "+ response.status);
                     console.error('Error Fetching data:', response.status);
                 }
             } catch (error) {
                 console.log('Not working');
-                navigate('/');
+                navigate('/login');
                 console.error('Error fetching dog data', error);
             }
         };
@@ -85,13 +85,13 @@ const Home: FC = (fetchData) => {
                     setDogList(responseData);
                 } else {
                     alert("Logging out as data failed to Load");
-                    navigate('/');
+                    navigate('/login');
 
                     console.error('Error posting dog data:', response.status);
                 }
             } catch (error) {
 
-                navigate('/');
+                navigate('/login');
                 console.error('Error posting dog data:', error);
             }
         };

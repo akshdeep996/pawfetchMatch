@@ -41,11 +41,11 @@ const Favorites = () => {
           setDogList(responseFavData);
         }
         else {
-          navigate('/');
+          navigate('/login');
           console.error("Error fetching Fav data")
         }
       } catch (error) {
-        navigate('/');
+        navigate('/login');
         console.error('Error posting dog Fav data:', error);
       }
     }
