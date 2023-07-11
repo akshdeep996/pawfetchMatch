@@ -37,7 +37,7 @@ const Favorites = () => {
 
         if (response.ok) {
           const responseFavData = await response.json();
-          console.log(responseFavData);
+        
           setDogList(responseFavData);
         }
         else {
